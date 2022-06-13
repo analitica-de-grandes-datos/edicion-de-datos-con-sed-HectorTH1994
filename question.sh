@@ -40,4 +40,17 @@
 #  2014-09-01,A,3,100.4
 #
 #  >>> Escriba su codigo a partir de este punto <<<
-#
+## Modificamos la fecha
+sed 's/\([0-9]\)\([0-9]\)\/\([0-9]\)\([0-9]\)\/\([0-9]\)\([0-9]\);/20\5\6-\3\4-\1\2;/g' data.csv | 
+sed 's/\([0-9]\)\/\([0-9]\)\/\([0-9]\)\([0-9]\)\([0-9]\)\([0-9]\);/\3\4\5\6-0\2-0\1;/g' |
+## arreglamos la N
+sed 's/;n/;\\N/g' | 
+sed 's/;;/;\\N;/g' | 
+sed 's/;\\n/;\\N/g' | 
+sed 's/;N/;\\N/g'|
+sed 's/;$/;\\N/g'| 
+sed 's/;N/;\\N/g'|
+
+## cambiamos comas por puntos y cambiamos ; por ,
+sed 's/,/./g' | 
+sed 's/;/,/g'
